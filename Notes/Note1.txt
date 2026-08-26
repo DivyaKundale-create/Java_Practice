@@ -1,0 +1,112 @@
+https://www.geeksforgeeks.org/java/classes-objects-java/
+procedural programming, driver function
+class is kindoff datatype for student example
+this datatype will have functions, primitive datatypes etc
+when you create an object which is non-primtive datatype it will stpore in heap memory
+
+Abstract class - In Java, an abstract class is a class that cannot be instantiated and is designed to be extended by other classes. It is used to achieve partial abstraction, where some methods are implemented while others are left for subclasses to define. An abstract class is declared using the abstract keyword.
+Note: Abstract Class cannot be instantiated directly
+https://www.geeksforgeeks.org/java/abstract-classes-in-java/
+ final methods (methods that cannot be overridden)
+
+Singleton class - https://www.geeksforgeeks.org/java/singleton-class-java/
+
+Interface -> 
+in interface everything is only public by default ( we can't have private/protected)
+all data members are public static final
+in interface every methods are public abstract by default
+default and static methods introduced later in java 1.8
+e.g library infaces- comparable, clonable, runnable, serializable
+a class can implements more than one interface 
+an interface can extends more than one interfaces
+
+Map is collections of key and value pair
+Map is an interface and e.g hashmap is implementation
+map doesn't care about order of storing
+HashMap<String,Interger> map = new HashMap<>() ===>> in this diamond symbol <> is come from old java it was previously written as HashMap<String,Interger> map = new HashMap<String,Interger>() but we can use empty <> which is same as above 
+
+The default initial capacity of a HashMap is 16, and its capacity is defined as the number of buckets (slots) in the underlying array used to store data.
+The 4 Core MetricsCapacity: 
+Total bucket slots available in the internal array.
+Size: Number of key-value pairs currently stored in the map.
+Load Factor: Threshold ratio determining when to resize (Default: 0.75).
+Resize Threshold: The exact size target triggering a growth phase (Capacity × Load Factor). 75%
+https://www.youtube.com/watch?v=1CJbB6SzjVw ---->> IMP
+Before Java 8: Buckets used a pure LinkedList. If multiple keys hashed to the same bucket (a collision), they were appended to the list. Performance was \(O(N)\) for lookups in that bucket.
+Java 8 and Newer: To prevent performance degradation, if a single bucket grows to hold 8 elements (called the TREEIFY_THRESHOLD), Java automatically converts that bucket's LinkedList into a Red-Black Tree. This improves lookup performance to \(O(\log N)\)
+
+Streams:
+Introduced in Java 8, the Stream API (java.util.stream) is a pipeline framework for processing collections of data declaratively. Instead of writing nested loops and conditional blocks (imperative style), you write what you want to achieve (functional style).A Stream is not a data structure—it does not store data. Instead, it carries data from a source (like a Collection, Array, or I/O channel) through a pipeline of operations.
+3 pipeline steps: Source → Intermediate Operations → Terminal Operation. 
+[Collection] ──> Stream() ──> Filter() ──> Map() ──> Collect()
+  (Source)                     (Intermediate)          (Terminal)
+
+
+Lambda version: num -> num.intValue() can be written in method reference=> Integer::intValue 
+
+why print message in java gives error in java class?
+In Java, a class body can only contain declarations (variables, methods, nested classes, constructors, etc.). It cannot contain executable action statements like System.out.println() directly.
+
+
+.entrySet() is a built-in method in Java's Map interface that returns a Set view of all the key-value pairs contained in that map.Each pair inside this set is wrapped in an object called a Map.Entry<K, V>.
+Why do we need it?A standard Map cannot be streamed directly because it does not implement the Iterable or Collection interfaces. Calling .entrySet() converts the map into a standard Set collection, which allows you to:Loop through both keys and values simultaneously.Open a Java Stream over your map's data.
+
+The primary use of Lombok is to eliminate boilerplate code in Java. It keeps your code clean, readable, and small by generating repetitive methods automatically during compilation.
+Getters & Setters: @Getter and @Setter create methods to read and modify data.Constructors: @AllArgsConstructor creates a constructor for all fields. @NoArgsConstructor creates a blank one.Object Helpers: @ToString creates a clean print format. @EqualsAndHashCode lets you compare objects accurately.
+Instead of adding five different annotations, you can just use @Data
+
+
+so basically foreach takes two argumentYes, exactly! But only when you are looping over a Map.When you use forEach on a Map, it always takes two arguments because a map is made of pairs:The First argument is always the Key.The Second argument is always the Value.The Twist: forEach on a List only takes ONE argument
+
+
+
+
+Here is that exact same breakdown style for every single tag in your pom.xml file.
+## 1. The Identity Tags
+
+* <project>
+In Maven, the <project> tag acts as the master container that wraps your entire configuration file from start to finish, telling the system that this XML document is a project blueprint.
+* <modelVersion>
+In Maven, the <modelVersion> tag defines the layout version of the POM file structure itself, ensuring that Maven knows exactly how to read and interpret the tags inside.
+* <groupId>
+In Maven, the <groupId> tag specifies the unique identifier or package name of your organization, preventing your project from conflicting with code written by other companies.
+* <artifactId>
+In Maven, the <artifactId> tag defines the official name of your specific project, which becomes the final name of the JAR or WAR file you generate.
+* <version>
+In Maven, the <version> tag marks the current development edition or release number of your application, showing whether the code is a stable release or a work-in-progress.
+
+## 2. The Settings Tags
+
+* <properties>
+In Maven, the <properties> tag acts as a central control panel where you define global variables, allowing you to change version numbers or settings across the whole file in one place.
+* <maven.compiler.source>
+In Maven, the <maven.compiler.source> tag tells the system which version of Java you used to write your code, ensuring modern features like Streams are recognized.
+* <maven.compiler.target>
+In Maven, the <maven.compiler.target> tag defines the Java version that the final compiled code must be compatible with so it runs smoothly on the target machine.
+* <project.build.sourceEncoding>
+In Maven, the <project.build.sourceEncoding> tag forces a specific text encoding standard (usually UTF-8) to prevent text glitches or weird symbol errors across different computers.
+
+## 3. The Dependency Tags
+
+* <dependencies>
+In Maven, the <dependencies> tag acts as a shopping cart container that holds the list of all external libraries and frameworks your application needs to download from the internet.
+* <dependency>
+In Maven, the <dependency> tag declares a single, specific external tool or library (like Lombok) that your project requires to compile and function.
+* <scope>
+In Maven, the <scope> tag restricts exactly when an external dependency is allowed to be used, such as limiting a testing tool strictly to your test phases.
+
+## 4. The Build & Plugin Tags
+
+* <build>
+In Maven, the <build> tag tells Java exactly how to compile, pack, and configure your application during the build process.
+* <plugins>
+In Maven, the <plugins> tag serves as a toolbox container within the build process, holding all the custom extensions and automated tools you want to run.
+* <plugin>
+In Maven, the <plugin> tag sets up a specific automated task or extra compiler tool (like the compiler plugin) to execute a specialized job during assembly.
+* <configuration>
+In Maven, the <configuration> tag passes specific custom settings and rules directly to a plugin, fine-tuning exactly how that tool behaves during the build.
+
+------------------------------
+Now that the entire pom.xml structure is perfectly clear, would you like to run your main application to test the Employee streams, or do you want to add error handling to your code?
+
+
